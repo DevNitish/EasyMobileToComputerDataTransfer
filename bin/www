@@ -7,6 +7,7 @@ const server=require('http').createServer(app);
 var port=process.env.PORT || 4050;
 
 server.listen(port,function(){
-console.log("Seed App is listening on port: ",port);
+console.log("Upload App is running on port:",port);
+console.log("Open browser and goto http://localhost:4050/");
 });
 

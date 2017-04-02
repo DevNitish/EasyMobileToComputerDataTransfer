@@ -1,11 +1,11 @@
 # EasyMobileToComputerDataTransfer
 Provides a web interface to transfer data from Mobile phone to computer.
-[Demo Here](http://mean-seedapp.herokuapp.com/)
+## [Tutorial Video](http://youtube.com/NicknetVideos)
 ### Prerequisites 
-Make sure you have installed following apps
-* NodeJs version 6.X.X
+Make sure you have installed following app
+* NodeJs version 6.X.X from [here](https://nodejs.org/en/download/)
 
-###To run the app
+### To run the app
 
 * Clone the repository  `git clone https://github.com/DevNitish/EasyMobileToComputerDataTransfer.git `
 * Change the name of the repository if you want otherwise `cd EasyMobileToComputerDataTransfer`
