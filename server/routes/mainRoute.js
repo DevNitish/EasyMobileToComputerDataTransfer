@@ -1,0 +1,90 @@
+/** All you raoutes and API calls here */
+var express=require('express');
+var USER=require('../models/user.js');
+var path =require('path');
+var multer  = require('multer');
+var Upload = multer({ dest: './uploads/'});
+router =express.Router();
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+      console.log("the body==",file)
+      var filename = file.originalname;
+        cb(null, filename);
+  }
+})
+//can be used to store files onserver side 
+var Upload =multer({ storage:storage });
+router.post('/testPost', Upload.single('file'), function(req, res,next) {
+       console.log(req.body) // this contains all text data
+    console.log("my fileu",req.file) // this is always an empty array
+//
+});
+
+
+// this is a basic route to insert a data (user) in DB
+router.post('/saveUser', function(req, res,next) {
+
+  USER.saveUser(req.body, function(err, result) {
+    if (result) {
+            console.log("Inserted");
+
+      res.send(result);
+        
+    } else {
+      console.log("Error");
+       
+      res.status(500).send('Internal error occurred--500');
+    }
+  });
+});
+router.post('/editUser', function(req, res,next) {
+    console.log("here",req.body);
+
+  USER.editUser(req.body, function(err, result) {
+    if (result) {
+            console.log("Edited",result);
+
+      res.send(result);
+        
+    } else {
+      console.log("Error");
+       
+      res.status(500).send('Internal error occurred--500');
+    }
+  });
+});
+router.post('/deleteUser', function(req, res,next) {
+    console.log("here deleteUser",req.body);
+
+  USER.deleteUser(req.body._id, function(err, result) {
+    if (result) {
+            console.log("Deleted!");
+
+      res.send(result);
+        
+    } else {
+      console.log("Error");
+       
+      res.status(500).send('Internal error occurred--500');
+    }
+  });
+});
+
+router.get('/getUser', function(req, res){
+        USER.findAllUser( function(err, result) {
+    if (result) {
+      res.send(result);
+        
+    } else {
+      console.log("Error");
+       
+      res.status(500).send('Internal error occurred--500');
+    }
+  });
+});
+
+module.exports = router;

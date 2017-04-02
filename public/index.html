@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Upload App</title>
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="./includes/css/bootstrap.min.css">
+  <!--custom css file-->
+  <link rel="stylesheet" href="./includes/css/style.css">
+  <style>
+    .thumb {
+    width: 24px;
+    height: 24px;
+    float: none;
+    position: relative;
+    top: 7px;
+}
+
+form .progress {
+    line-height: 15px;
+}
+}
+
+.progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+}
+
+.progress div {
+    font-size: smaller;
+    background: orange;
+    width: 0;
+}
+  </style>
+  <!--bootstrap css and js file-->
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+  </script>
+  <script src="./includes/js/tether.min.js">
+  </script>
+  <script src="./includes/js/bootstrap.min.js">
+  </script>
+  <script src="./includes/js/fe4a02cae5.js"></script>
+
+  <!--Angular js files-->
+  <script src="./includes/js//angular.min.js"></script>
+    <!--file upload-->
+  <script type="text/javascript" src="./includes/js/ng-file-upload/ng-file-upload-shim.js"></script>
+
+  <script type="text/javascript" src="./includes/js/ng-file-upload/ng-file-upload.js"></script>
+
+  <script src="./includes/js//angular-animate.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="mainCtrl" ng-cloak>
+  <!--start you angular app here-->
+  <!--
+    Your HTML content here
+  -->
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="display-3">Welcome to MEAN Seed App!</h1>
+      <p class="lead">You can use this form to register a user.</p>
+      <hr class="my-4">
+      <p>Get up and running with MEAN stack application. This is a basic registration form, in which you can perform CURD operation.
+        You can check out the code on Github.</p>
+      <p class="lead">
+        <a class="btn btn-success btn-lg" target="_blank" href="https://github.com/DevNitish/MEANseedApp" role="button">Code on Github</a>
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-md-6  ">
+        ============
+  <form name="myForm">
+    <fieldset>
+      <legend>Upload on form submit</legend>
+      Username:
+      <input type="text" name="userName" ng-model="username" size="31" required>
+      <i ng-show="myForm.userName.$error.required">*required</i>
+      <br>Photo:
+      <input type="file" ngf-select ng-model="picFile" name="file"    
+              required
+             ngf-model-invalid="errorFile">
+      <i ng-show="myForm.file.$error.required">*required</i><br>
+      <i ng-show="myForm.file.$error.maxSize">File too large 
+          {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+      <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> <button ng-click="picFile = null" ng-show="picFile">Remove</button>
+      <br>
+      <button  ng-disabled="!myForm.$valid" 
+              ng-click="uploadPic(picFile)">Submit</button>
+      <span class="progress" ng-show="picFile.progress >= 0">
+        <div style="width:{{picFile.progress}}+'%'"   ng-bind="picFile.progress + '%'"></div>
+      </span>
+      <span ng-show="picFile.result">Upload Successful</span>
+      <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+    </fieldset>
+    <br>
+  </form>
+
+        ===========
+        </div>
+        <!--col md 6-->
+
+        <div class="col-md-6">
+      
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <footer class="footer">
+    <div class="container">
+      <p class="text-muted text-center">Coded with <i class="fa fa-heart"></i> by <a href="https://twitter.com/authornitish" target="_blank">Nitish Kumar</a></p>
+      </p>
+    </div>
+  </footer>
+  <!--js files-->
+
+  <!--all custom javascript files here-->
+  <script src="./app.public.js"></script>
+</body>
+
+</html>
