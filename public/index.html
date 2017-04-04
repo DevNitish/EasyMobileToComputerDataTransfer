@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Upload App</title>
+  <title>Upload App by NicknetVideos.com</title>
   <meta charset="utf-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="./includes/css/bootstrap.min.css">
@@ -78,8 +78,10 @@
         
         <form name="myForm">
           <fieldset>
-            <legend>Upload on form submit</legend>
-            <br>File:
+            <div class="card-header">
+                <legend>Upload file on submit</legend>
+            </div>
+            <br>
             <input type="file" ngf-select ng-model="picFile" name="file" required ngf-model-invalid="errorFile">
             <i ng-show="myForm.file.$error.required">*required</i><br>
 

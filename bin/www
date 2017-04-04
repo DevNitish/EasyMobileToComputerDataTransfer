@@ -8,6 +8,9 @@ var port=process.env.PORT || 4050;
 
 server.listen(port,function(){
 console.log("Upload App is running on port:",port);
-console.log("Open browser and goto http://localhost:4050/");
+console.log("In this computer, goto http://localhost:"+port);
+console.log("In other computer running on same wifi, goto http://[Wi-Fi port]:"+port);
+console.log("Press Ctrl+C to stop sever");
+
 });
 

@@ -6,7 +6,7 @@ var myApp= angular.module('myApp',['ngFileUpload']);
 
 myApp.controller('mainCtrl', ["$scope","$http","$timeout","Upload", function($scope,$http,$timeout,Upload){
 
-
+    $scope.picFile="";
     $scope.uploadPic = function(file) {
     file.upload = Upload.upload({
       url: '/testPost',
@@ -24,6 +24,10 @@ myApp.controller('mainCtrl', ["$scope","$http","$timeout","Upload", function($sc
     }, function (evt) {
       // Math.min is to fix IE which reports 200% sometimes
       file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+      if (file.progress===100){
+        //alert("File uploaded successfully!")
+        $scope.picFile="";
+      }
     });
     }
 

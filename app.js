@@ -7,7 +7,8 @@ var router =express.Router();
 var bodyParser=require('body-parser');
 var multer  = require('multer');
 var Upload = multer({ dest: './uploads/'});
-
+var os = require('os');
+var ifaces = os.networkInterfaces();
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -25,6 +26,31 @@ router.post('/testPost', Upload.single('file'), function(req, res,next) {
        console.log(req.body) // this contains all text data
     console.log("my fileu",req.file) // this is always an empty array
 //
+});
+	
+'use strict';
+
+var os = require('os');
+var ifaces = os.networkInterfaces();
+
+Object.keys(ifaces).forEach(function (ifname) {
+  var alias = 0;
+
+  ifaces[ifname].forEach(function (iface) {
+    if ('IPv4' !== iface.family || iface.internal !== false) {
+      // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
+      return;
+    }
+
+    if (alias >= 1) {
+      // this single interface has multiple ipv4 addresses
+      console.log(ifname + ':' + alias, iface.address);
+    } else {
+      // this interface has only one ipv4 adress
+      console.log(ifname, iface.address);
+    }
+    ++alias;
+  });
 });
 
 
